@@ -1,7 +1,11 @@
+"""
+LoRA Configuration
+Configure LoRA (Low-Rank Adaptation) for efficient fine-tuning
+"""
+
 from peft import (
     LoraConfig,
     get_peft_model,
-    TaskType,
     PeftModel,
     PeftConfig
 )
@@ -47,6 +51,14 @@ class LoRAConfigManager:
         }
     }
     
+    # Common target modules for different architectures
+    TARGET_MODULES = {
+        'vit': ['query', 'value'],  # Vision Transformer
+        'resnet': ['conv1', 'conv2'],  # ResNet
+        'convnext': ['dwconv', 'pwconv1', 'pwconv2'],  # ConvNeXt
+        'swin': ['query', 'value']  # Swin Transformer
+    }
+    
     def __init__(self):
         """Initialize LoRA config manager"""
         logger.info("🎯 LoRAConfigManager initialized")
@@ -78,13 +90,18 @@ class LoRAConfigManager:
         # Override with kwargs
         config_dict.update(kwargs)
         
+        # Auto-detect target modules if not specified
+        if target_modules is None:
+            # Default: attention layers for vision transformers
+            target_modules = ["query", "value"]
+            logger.info(f"   Auto-detected target modules: {target_modules}")
+        
         # Create LoRA config
         lora_config = LoraConfig(
             r=config_dict['r'],
             lora_alpha=config_dict['lora_alpha'],
             lora_dropout=config_dict['lora_dropout'],
             bias='none',
-            task_type=TaskType.IMAGE_CLASSIFICATION,
             target_modules=target_modules
         )
         
@@ -93,6 +110,7 @@ class LoRAConfigManager:
         logger.info(f"   Rank (r): {config_dict['r']}")
         logger.info(f"   Alpha: {config_dict['lora_alpha']}")
         logger.info(f"   Dropout: {config_dict['lora_dropout']}")
+        logger.info(f"   Target modules: {target_modules}")
         
         return lora_config
     
