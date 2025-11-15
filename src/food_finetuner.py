@@ -191,14 +191,14 @@ class ArabicFoodFineTuner:
         logger.info(f"   Batch size: {batch_size}")
         logger.info(f"   Learning rate: {learning_rate}")
         
-        # Training arguments
+        # Training arguments (FIXED API)
         training_args = TrainingArguments(
             output_dir=str(self.output_dir),
             num_train_epochs=num_epochs,
             per_device_train_batch_size=batch_size,
             per_device_eval_batch_size=batch_size,
             learning_rate=learning_rate,
-            evaluation_strategy="epoch",
+            eval_strategy="epoch",  # FIXED: was evaluation_strategy
             save_strategy="epoch",
             load_best_model_at_end=True,
             metric_for_best_model="eval_loss",
@@ -238,7 +238,7 @@ class ArabicFoodFineTuner:
         logger.info(f"\n💾 Model saved to: {self.output_dir}/final")
         
         return trainer
-    
+
     def _compute_metrics(self, eval_pred):
         """Compute evaluation metrics"""
         predictions, labels = eval_pred

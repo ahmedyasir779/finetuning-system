@@ -1,0 +1,38 @@
+{
+  "classes": [
+    "arabic_coffee",
+    "dates",
+    "falafel",
+    "grilled_meat",
+    "hummus",
+    "kabsa",
+    "kunafa",
+    "mandi",
+    "samboosa",
+    "shawarma"
+  ],
+  "class_to_idx": {
+    "arabic_coffee": 0,
+    "dates": 1,
+    "falafel": 2,
+    "grilled_meat": 3,
+    "hummus": 4,
+    "kabsa": 5,
+    "kunafa": 6,
+    "mandi": 7,
+    "samboosa": 8,
+    "shawarma": 9
+  },
+  "idx_to_class": {
+    "0": "arabic_coffee",
+    "1": "dates",
+    "2": "falafel",
+    "3": "grilled_meat",
+    "4": "hummus",
+    "5": "kabsa",
+    "6": "kunafa",
+    "7": "mandi",
+    "8": "samboosa",
+    "9": "shawarma"
+  }
+}
