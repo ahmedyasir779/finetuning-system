@@ -13,6 +13,7 @@ ENV/
 *.ipynb
 
 # Models (large files)
+models/
 models/checkpoints/*.pth
 models/checkpoints/*.bin
 models/checkpoints/*.safetensors
