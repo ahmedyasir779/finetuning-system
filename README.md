@@ -1,4 +1,4 @@
-# 🍽️ Arabic Food Classifier
+# Arabic Food Classifier
 
 A production-ready Computer Vision system that recognizes 10 popular Arabic dishes with **100% test accuracy** using Vision Transformer (ViT).
 
