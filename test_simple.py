@@ -1,14 +1,10 @@
-"""
-Test the simple model
-"""
-
 import torch
 from transformers import AutoModelForImageClassification, AutoImageProcessor
 from PIL import Image
 from pathlib import Path
 import json
 
-print("\n🔮 TESTING ARABIC FOOD CLASSIFIER\n")
+print("\nTESTING ARABIC FOOD CLASSIFIER\n")
 
 # Load model
 print("Loading model...")
@@ -25,7 +21,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 model.to(device)
 model.eval()
 
-print(f"✅ Model loaded")
+print(f" Model loaded")
 print(f"   Device: {device}")
 print(f"   Classes: {len(classes)}\n")
 
@@ -34,7 +30,7 @@ test_dir = Path('data/arabic_food/test')
 correct = 0
 total = 0
 
-print("📊 Testing on each class:\n")
+print(" Testing on each class:\n")
 
 for class_dir in sorted(test_dir.iterdir()):
     if class_dir.is_dir():
@@ -70,8 +66,8 @@ print(f"📊 Test Accuracy: {accuracy:.1f}% ({correct}/{total})")
 print("="*60)
 
 if accuracy >= 80:
-    print("\n🎉 EXCELLENT! Model working perfectly!")
+    print("\n EXCELLENT! Model working perfectly!")
 elif accuracy >= 60:
-    print("\n👍 GOOD! Model working!")
+    print("\n GOOD! Model working!")
 
 print()
